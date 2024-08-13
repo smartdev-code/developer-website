@@ -13,7 +13,7 @@ class Login extends Component
     #[Validate('required')]
     public $password = '';
 
-    public function save()
+    public function login()
     {
         $this->validate(); 
  

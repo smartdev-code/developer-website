@@ -33,7 +33,7 @@ class Register extends Component
            "password" => MD5($this->password) 
         ]);
  
-        return $this->redirect('/');
+        return $this->redirect('/login');
     }
     public function render()
     {

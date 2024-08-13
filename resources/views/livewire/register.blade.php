@@ -23,7 +23,12 @@
             </div>
             <div class="space-y-2">
                 <label for="password">Password</label>
-                <input class="w-full px-4 py-2 border rounded-xl focus:outline focus:outline-blue-500" type="password" wire:model="password" placeholder="Your Password">
+                <div class="relative" x-data="{show: false}">
+                    <input class="w-full px-4 py-2 border rounded-xl focus:outline focus:outline-blue-500" :type="show ? 'text' : 'password'" wire:model="password" placeholder="Your Password">
+                    <button type="button" class="absolute top-0 right-0 h-full w-12 border-l" @click="show = !show">
+                        <i :class="show ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                    </button>
+                </div>
                 <div class="text-red-400">
                     @error('password') <span class="error">{{ $message }}</span> @enderror 
                 </div>
