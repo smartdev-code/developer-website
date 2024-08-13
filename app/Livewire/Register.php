@@ -3,7 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Validate; 
+use Livewire\Attributes\Validate;
+use App\Models\User;
 
 class Register extends Component
 {
@@ -19,6 +20,12 @@ class Register extends Component
     public function save()
     {
         $this->validate(); 
+
+        User::create([
+           "name" => $this->name,
+           "email" => $this->email,
+           "password" => MD5($this->password) 
+        ]);
  
         return $this->redirect('/');
     }
