@@ -19,7 +19,13 @@ class Register extends Component
 
     public function save()
     {
-        $this->validate(); 
+        $this->validate(
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8', // Assuming you have a 'password_confirmation' field
+            ]
+        ); 
 
         User::create([
            "name" => $this->name,
