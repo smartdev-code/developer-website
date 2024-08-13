@@ -39,11 +39,11 @@
             <button type="submit" class="flex w-full py-3 rounded-2xl bg-blue-500 text-white items-center justify-center gap-2">
                 <i class="fa fa-sign-in"></i> Login
             </button>
-            <div class="text-center">
-                <button type="button" class="flex w-full py-3 rounded-2xl  border border-blue-500 hover:bg-blue-500 text-blue-500 items-center justify-center gap-2">
+            <!-- <div class="text-center">
+                <button type="button" wire:click="redirectToGoogle" class="flex w-full py-3 rounded-2xl  border border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 items-center justify-center gap-2" >
                     <i class="fab fa-google"></i> Login with Google
                 </button>
-            </div>
+            </div> -->
             <div class="text-center">
                 Don't you have an account? <a class="text-blue-500" href="/register">Register</a>
             </div>

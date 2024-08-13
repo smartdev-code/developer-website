@@ -7,6 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
 
 class Login extends Component
 {
@@ -15,6 +16,31 @@ class Login extends Component
 
     #[Validate('required')]
     public $password = '';
+
+    public function redirectToGoogle()
+    {
+        return redirect()->to(Socialite::driver('google')->stateless()->redirect()->getTargetUrl());
+    }
+
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+
+        $authUser = \App\Models\User::where('email', $user->getEmail())->first();
+
+        if ($authUser) {
+            Auth::login($authUser);
+        } else {
+            $newUser = \App\Models\User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => bcrypt('password'), // Handle password securely
+            ]);
+            Auth::login($newUser);
+        }
+
+        return redirect()->intended('/');
+    }
 
     public function login()
     {
