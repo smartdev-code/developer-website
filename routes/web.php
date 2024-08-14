@@ -1,5 +1,6 @@
 <?php
 use App\Livewire\Home;
+use App\Livewire\Project;
 use App\Livewire\Login;
 use App\Livewire\Register;
 use App\Livewire\ForgetPassword;
@@ -9,6 +10,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::middleware([App\Http\Middleware\UserAuth::class])->group(function () {
     Route::get('/', Home::class)->name("home");
+    Route::get('/projects', Project::class)->name("project");
 });
 
 Route::get('auth/google', [Login::class, 'redirectToGoogle'])->name('google.login');
